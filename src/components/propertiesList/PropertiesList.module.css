@@ -1,0 +1,53 @@
+.propertiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px;
+  padding: 20px;
+  justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filterButton {
+  padding: 10px 24px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #f3f3f3;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterButton:hover {
+  background-color: #eaeaea;
+}
+
+.activeFilter {
+  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .propertiesGrid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .propertiesGrid {
+    gap: 16px;
+  }
+  .filterContainer {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

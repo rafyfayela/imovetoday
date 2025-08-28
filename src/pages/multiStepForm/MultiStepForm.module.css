@@ -1,0 +1,203 @@
+/* Modal Backdrop for Blur Effect */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  backdrop-filter: blur(8px); /* Blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Above the floating button */
+  opacity: 0; /* Start hidden for transition */
+  animation: fadeIn 0.3s forwards; /* Fade in animation */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #ffffff;
+  border-radius: 12px; /* Softer rounded corners */
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  max-width: 600px; /* Max width for the modal */
+  width: 90%; /* Responsive width */
+  position: relative;
+  animation: slideIn 0.4s ease-out forwards; /* Slide in animation */
+  transform: translateY(-50px); /* Start slightly above center */
+  opacity: 0; /* Start hidden for animation */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Close Button */
+.closeModalButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.closeModalButton:hover {
+  color: #333;
+}
+
+/* Form Styling */
+.multiStepForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formStep {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between inputs */
+  transition: all 0.4s ease-in-out; /* For step transitions */
+}
+
+.formStep h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.formStep input[type="text"],
+.formStep input[type="number"],
+.formStep select {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formStep input[type="text"]:focus,
+.formStep input[type="number"]:focus,
+.formStep select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff; /* Style checkbox color */
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.buttonGroup:has(.backButton) { /* If there's a back button, space between */
+  justify-content: space-between;
+}
+
+.formButton {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #007bff;
+  color: white;
+}
+
+.formButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formButton.backButton {
+  background-color: #6c757d; /* Grey for back button */
+}
+
+.formButton.backButton:hover {
+  background-color: #5a6268;
+}
+
+.formButton.addChildButton {
+  background-color: #28a745; /* Green for add child button */
+  align-self: flex-start; /* Align left */
+  margin-top: 10px;
+}
+
+.formButton.addChildButton:hover {
+  background-color: #218838;
+}
+
+.childForm {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+  background-color: #f8f8f8;
+}
+
+.childForm h4 {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 10px;
+}
+
+.childForm input {
+  margin-bottom: 10px; /* Space between child inputs */
+}
+
+.infoMessage {
+  background-color: #e9f7ef;
+  color: #28a745;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.errorText {
+  color: #dc3545; /* Red for errors */
+  font-size: 14px;
+  margin-top: -10px; /* Pull it closer to the input */
+  margin-bottom: 10px;
+}
+
+.inputError {
+  border-color: #dc3545 !important; /* Red border for erroneous inputs */
+}

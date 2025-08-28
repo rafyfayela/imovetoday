@@ -1,0 +1,49 @@
+.footerBar {
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  font-size: 0.9rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.left,
+.middle,
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c3c3c3;
+}
+
+.left {
+  gap: 0.8rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  background-color: #e41b23;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.middle {
+  flex: 1;
+  justify-content: center;
+}
+
+.right {
+  gap: 1rem;
+}

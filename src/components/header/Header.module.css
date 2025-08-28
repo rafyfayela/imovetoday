@@ -1,0 +1,253 @@
+/* ==========================================================================
+   Base Header & Layout
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.75); /* Semi-transparent for blur effect */
+  -webkit-backdrop-filter: blur(16px); /* Blur for Safari */
+  backdrop-filter: blur(16px); /* Standard blur property */
+  border-bottom: 1px solid transparent; /* Starts transparent, gets a color on scroll */
+  padding: 0 2rem;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* --- Scrolled State --- */
+/* This class is added via JS when the user scrolls down */
+.headerScrolled {
+  background-color: rgba(255, 255, 255, 0.85); /* More opaque on scroll for readability */
+  border-bottom: 1px solid rgb(235, 235, 235); /* Subtle separator line */
+}
+
+/* ==========================================================================
+   Top Level Navigation (Logo, Center Controls, Auth)
+   ========================================================================== */
+
+.topLevel {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* --- Columns for alignment --- */
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0; /* Ensures left/right columns have a base width, preventing center squish */
+}
+
+.right {
+  justify-content: flex-end; /* Aligns auth buttons to the far right */
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  /* Height is important for vertical alignment of the animated children */
+  height: 50px;
+}
+
+/* ==========================================================================
+   Center Controls (Segmented Nav & Mini Search Bar)
+   ========================================================================== */
+
+/* --- 1. Segmented Control (Visible at Top) --- */
+.segmentedControlContainer {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 50px;
+  padding: 6px;
+  border: 1px solid #ddd;
+  /* font-family: 'Inter', sans-serif; */
+}
+
+.segmentButton {
+  position: relative;
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: 12px; /* Slightly larger */
+  font-weight: 600; /* Bolder font */
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.segmentButton .label {
+  position: relative;
+  z-index: 1;
+}
+
+.activeBackground {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+
+.active {
+  color: #fff; /* White text for active */
+}
+
+/* --- 2. Mini Search Bar (Visible on Scroll) --- */
+.miniSearchBar {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 8px 24px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 9999px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.miniSearchBar:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.miniSearchBar span {
+  padding-right: 16px;
+}
+
+.miniSearchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.btnNav,
+.btnRegister {
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btnNav {
+  background: transparent;
+  color: #6c757d;
+}
+
+.btnNav:hover {
+  color: #000;
+}
+
+.btnRegister {
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(228, 27, 35, 0.25);
+}
+
+.btnRegister:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(228, 27, 35, 0.4);
+}
+
+.bottomLevel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 16px;
+  overflow: hidden;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: auto;
+  max-width: 850px;
+}
+
+.searchSegment {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+  border-right: 1px solid #ddd;
+  flex: 1; /* Allows segments to grow */
+}
+
+.searchSegment:last-of-type {
+  border-right: none;
+}
+
+.searchSegment span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.searchSegment input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #717171;
+}
+
+.searchSegment input::placeholder {
+  color: #717171;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background 0.3s ease;
+}
+
+.searchButton:hover {
+  background: linear-gradient(135deg, #c5171f, #e41b23);
+}

@@ -1,0 +1,96 @@
+.appHome {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  position: relative;
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  padding: 10;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #222222;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.floatingButton {
+  position: fixed; /* relative to viewport */
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* on top of everything */
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 35px;
+  padding: 10px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* Shimmer effect */
+.floatingButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.floatingButton:hover {
+  transform: translateX(-50%) scale(1.05);
+  background-color: #e04848;
+}
+
+.floatingButton.open {
+  width: 200px;
+  background-color: #007bff;
+}
+
+/* Optional: map panel placeholder */
+.mapPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}

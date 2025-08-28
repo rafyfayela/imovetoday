@@ -1,0 +1,61 @@
+.card {
+  min-width: 270px;
+  max-width: 300px;
+  flex: 0 0 calc(25% - 15px); /* 4 cards in viewport */
+  border-radius: 20px;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  
+}
+
+.cardCarousel {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.cardCarousel .slick-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 220px !important;
+}
+
+.cardImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.cardContent {
+  padding: 15px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 5px;
+  color: #111;
+}
+
+.cardText {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 5px;
+}
+
+.rating {
+  font-weight: 500;
+  color: #f5a623;
+  margin-top: 5px;
+}

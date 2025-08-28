@@ -1,0 +1,67 @@
+.ourTopGemsContainer {
+  position: relative;
+  padding: 20px 0;
+}
+
+.horizontalScrollContainer {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+}
+
+.horizontalScrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Arrows */
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.arrowLeft {
+  left: -10px;
+}
+
+.arrowRight {
+  right: -10px;
+}
+
+.ourTopGemsContainer:hover .arrowLeft,
+.ourTopGemsContainer:hover .arrowRight {
+  opacity: 1;
+}
+
+.arrowLeft::before,
+.arrowRight::before {
+  content: '';
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  padding: 6px;
+  display: inline-block;
+}
+
+.arrowLeft::before {
+  transform: rotate(135deg);
+}
+
+.arrowRight::before {
+  transform: rotate(-45deg);
+}

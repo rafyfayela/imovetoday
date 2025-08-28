@@ -1,0 +1,30 @@
+/* .logo {
+  height: 5.2rem;
+  width: auto;
+} */
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.logoImage {
+  height: 100px; /* adjust as needed */
+  width: auto;
+  display: block;
+}
+.logoIcon {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #000000 0%, #E41B23 50%, #00843D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}

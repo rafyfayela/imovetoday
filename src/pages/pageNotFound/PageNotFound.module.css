@@ -1,0 +1,157 @@
+/* File: src/components/PageNotFound/PageNotFound.module.css */
+.pageNotFound {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin-top: 80px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.errorCode {
+  font-size: 8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #000000 0%, #E41B23 50%, #00843D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.errorMessage h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 1rem;
+}
+
+.errorMessage p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 2.5rem;
+}
+
+.illustration {
+  margin: 2.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.homeButton, .backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.homeButton {
+  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(228, 27, 35, 0.2);
+}
+
+.homeButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(228, 27, 35, 0.3);
+}
+
+.backButton {
+  background: transparent;
+  color: #6c757d;
+  border: 1px solid #e2e2e2;
+}
+
+.backButton:hover {
+  border-color: #adb5bd;
+  color: #343a40;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 1rem;
+    margin-top: 70px;
+  }
+  
+  .content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .errorCode {
+    font-size: 6rem;
+  }
+  
+  .errorMessage h1 {
+    font-size: 2rem;
+  }
+  
+  .errorMessage p {
+    font-size: 1.1rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .homeButton, .backButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .errorCode {
+    font-size: 4rem;
+  }
+  
+  .errorMessage h1 {
+    font-size: 1.8rem;
+  }
+  
+  .illustration svg {
+    width: 250px;
+    height: auto;
+  }
+}

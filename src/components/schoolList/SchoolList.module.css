@@ -1,0 +1,22 @@
+.schoolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* auto-fit more cards */
+  gap: 24px;
+  padding: 20px;
+  justify-items: center; /* center the cards horizontally */
+  max-width: 1400px; /* optional: limit total width */
+  margin: 0 auto; /* center the grid in the page */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .schoolsGrid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .schoolsGrid {
+    gap: 16px;
+  }
+}
