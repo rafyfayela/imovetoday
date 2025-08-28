@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPorpertyById } from '../../services/apiProperties';
 import styles from './PropertyDetails.module.css';
-import Header from '../../components/header/Header';
 import Amenities from './components/Amenities';
 import PropertyOverview from './components/PropertyOverview';
 import PropertyHeroSection from './components/PropertyHeroSection';
@@ -71,7 +70,6 @@ const PropertyDetails = () => {
 
   return (
     <div>
-      <Header />
       <div className={styles.propertyDetailsContainer}>
         <PropertyHeroSection
           name={name}

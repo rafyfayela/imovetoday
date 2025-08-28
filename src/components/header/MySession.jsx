@@ -1,20 +1,47 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useAuthContext } from '../../../Provider/AuthProvider';
+import { FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import useAuth from '../../../hooks/useAuth';
 
 export default function MySession() {
   const { profile, loading } = useAuthContext();
+  const [open, setOpen] = useState(false);
+  const { logout, loading: LogoutLoading, error } = useAuth();
+  const dropdownRef = useRef(null);
 
   const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(
     profile?.full_name
   )}&background=0D8ABC&color=fff&rounded=true`;
 
-  if (loading) return <div>Loading...</div>;
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
+  const handleLogout = async () => {
+    const success = await logout();
+    if (success) {
+      setOpen(false);
+
+      window.location.href = '/login';
+    } else {
+      console.error('Logout failed:', error);
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
   if (!profile) return <div>Please log in</div>;
 
   return (
     <div
+      ref={dropdownRef}
       style={{
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
@@ -25,8 +52,76 @@ export default function MySession() {
       <img
         src={profile.photo_url || fallbackAvatar}
         alt={profile.full_name}
-        style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+        style={{ width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer' }}
+        onClick={() => setOpen(!open)}
       />
+
+      {open && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            right: 0,
+            marginTop: '8px',
+            background: '#fff',
+            borderRadius: '14px',
+            boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+            minWidth: '200px',
+            overflow: 'hidden',
+            zIndex: 100,
+            fontFamily:
+              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+          }}
+        >
+          <button style={menuItemStyle} onClick={() => alert('Profile clicked')}>
+            <FaUser style={iconStyle} />
+            <span>Profile</span>
+          </button>
+          <div style={dividerStyle}></div>
+          <button style={menuItemStyle} onClick={() => alert('Settings clicked')}>
+            <FaCog style={iconStyle} />
+            <span>Settings</span>
+          </button>
+          <div style={dividerStyle}></div>
+          <button
+            style={{ ...menuItemStyle, color: '#e53935', fontWeight: 500 }}
+            onClick={handleLogout}
+            disabled={LogoutLoading}
+          >
+            <FaSignOutAlt style={{ ...iconStyle, color: '#e53935' }} />
+            <span>{LogoutLoading ? 'Logging out...' : 'Logout'}</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
+
+const menuItemStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '12px',
+  width: '100%',
+  padding: '10px 16px',
+  background: 'transparent',
+  border: 'none',
+  fontSize: '14px',
+  fontWeight: 600,
+  cursor: 'pointer',
+  textAlign: 'left',
+  borderRadius: '8px',
+  transition: 'all 0.2s ease',
+  color: '#333',
+};
+
+const iconStyle = {
+  fontSize: '18px',
+  color: '#555',
+  flexShrink: 0,
+};
+
+const dividerStyle = {
+  height: '1px',
+  background: '#e0e0e0',
+  margin: '4px 0',
+};
