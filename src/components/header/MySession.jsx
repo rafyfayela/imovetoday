@@ -2,8 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuthContext } from '../../../Provider/AuthProvider';
 import { FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import useAuth from '../../../hooks/useAuth';
+import { useNavigate } from 'react-router';
 
 export default function MySession() {
+
+  const navigate = useNavigate()
   const { profile, loading } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { logout, loading: LogoutLoading, error } = useAuth();
@@ -73,7 +76,7 @@ export default function MySession() {
               '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
           }}
         >
-          <button style={menuItemStyle} onClick={() => alert('Profile clicked')}>
+          <button style={menuItemStyle} onClick={() => navigate('/profile')}>
             <FaUser style={iconStyle} />
             <span>Profile</span>
           </button>
