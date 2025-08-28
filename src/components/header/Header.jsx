@@ -118,7 +118,7 @@ const Header = () => {
                     key="segments"
                     variants={segmentedControlVariants}
                     initial="initial"
-                    animate="initial" // No animation needed on initial render
+                    animate="initial"
                     exit="exit"
                     transition={{ duration: 0.2, ease: 'easeOut' }}
                     className={styles.segmentedControlContainer}

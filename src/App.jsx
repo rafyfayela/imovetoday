@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LandingPage from './pages/landingPage/LandingPage';
 import SignUp from './pages/singUp/SignUp';
@@ -34,9 +34,9 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<AppHome />} /> 
-            <Route path="schools" element={<SchoolList />} /> 
-            <Route path="schools/:id" element={<SchoolDetails />} /> 
+            <Route index element={<AppHome />} />
+            <Route path="schools" element={<SchoolList />} />
+            <Route path="schools/:id" element={<SchoolDetails />} />
             <Route path="properties" element={<PropertyList />} />
             <Route path="properties/:id" element={<PropertyDetails />} />
           </Route>
