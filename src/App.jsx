@@ -14,6 +14,7 @@ import SchoolList from './components/schoolList/SchoolList';
 import PropertyList from './components/propertiesList/PropertiesList';
 import PropertyDetails from './pages/propertyDetails/PropertyDetails';
 import AppHome from './components/appHome/AppHome';
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/profile" element={<Profile />} />
 
           <Route
             path="/app"

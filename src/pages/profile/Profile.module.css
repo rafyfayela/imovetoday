@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #6C63FF; /* Elegant purple */
+  --secondary-color: #3b82f6; /* Highlight blue */
+  --accent-color: #10b981; /* Green accent */
+  --danger-color: #ef4444; /* Red accent */
+  --bg-color: #f5f6fa; /* Light modern background */
+  --card-bg: rgba(255, 255, 255, 0.1); /* Glass effect */
+  --border-color: rgba(255, 255, 255, 0.2);
+  --text-color: #111827;
+  --subtext-color: #6b7280;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+
+  /* Compatibilité multi-navigateurs */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Standard */
+  color: transparent;     /* Standard fallback */
+  
+  letter-spacing: 1px;
+}
+
+.loadingText {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--subtext-color);
+}
+
+/* Profile Header */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--primary-color);
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.profileName {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.profileDetail {
+  font-size: 1rem;
+  color: var(--subtext-color);
+}
+
+/* Cards */
+.profileCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profileCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.8rem;
+}
+
+.cardTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cardActions button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.editButton {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.editButton:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.saveButton {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.saveButton:hover {
+  background-color: #059669;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.cancelButton {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #dc2626;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+/* Card Items */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.cardItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cardItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.editableField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fieldLabel {
+  font-weight: 500;
+  color: var(--subtext-color);
+  min-width: 120px;
+  text-transform: capitalize;
+}
+
+.fieldValue {
+  color: var(--text-color);
+  flex-grow: 1;
+  text-align: right;
+  word-break: break-word;
+}
+
+.editableInput {
+  flex-grow: 1;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  text-align: right;
+}
+
+.editableInput:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+/* Children Info */
+.childName {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.childDetails {
+  color: var(--subtext-color);
+  font-size: 0.9em;
+  margin-left: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profileHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profileName {
+    font-size: 1.8rem;
+  }
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+  .editableField {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .fieldLabel, .fieldValue, .editableInput {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+  .profileName {
+    font-size: 1.4rem;
+  }
+  .cardActions button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
