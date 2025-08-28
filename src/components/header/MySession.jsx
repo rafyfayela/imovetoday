@@ -2,9 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuthContext } from '../../../Provider/AuthProvider';
 import { FaUser, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import useAuth from '../../../hooks/useAuth';
+import HoverButton from './HoverButton';
+import ProfileSkeleton from './ProfileSkeleton';
 
 export default function MySession() {
   const { profile, loading } = useAuthContext();
+
   const [open, setOpen] = useState(false);
   const { logout, loading: LogoutLoading, error } = useAuth();
   const dropdownRef = useRef(null);
@@ -34,8 +37,7 @@ export default function MySession() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (!profile) return <div>Please log in</div>;
+  if (loading || !profile) return <ProfileSkeleton />;
 
   return (
     <div
@@ -73,24 +75,20 @@ export default function MySession() {
               '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
           }}
         >
-          <button style={menuItemStyle} onClick={() => alert('Profile clicked')}>
-            <FaUser style={iconStyle} />
-            <span>Profile</span>
-          </button>
-          <div style={dividerStyle}></div>
-          <button style={menuItemStyle} onClick={() => alert('Settings clicked')}>
+          <HoverButton onClick={() => alert('Settings clicked')}>
             <FaCog style={iconStyle} />
             <span>Settings</span>
-          </button>
+          </HoverButton>
           <div style={dividerStyle}></div>
-          <button
-            style={{ ...menuItemStyle, color: '#e53935', fontWeight: 500 }}
+          <HoverButton
             onClick={handleLogout}
             disabled={LogoutLoading}
+            hoverColor="#fce4e4"
+            style={{ color: '#e53935', fontWeight: 500 }}
           >
             <FaSignOutAlt style={{ ...iconStyle, color: '#e53935' }} />
             <span>{LogoutLoading ? 'Logging out...' : 'Logout'}</span>
-          </button>
+          </HoverButton>
         </div>
       )}
     </div>
