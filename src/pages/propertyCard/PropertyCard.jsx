@@ -1,12 +1,21 @@
 import React from 'react';
 import styles from './PropertyCard.module.css';
-import { Link } from 'react-router-dom';
+
 const PropertyCard = ({ property }) => {
   const { id, name, city, type, images, listing_type } = property;
 
+  const handleRedirect = (id) => {
+    // Opens property page in a new tab
+    window.open(`/app/properties/${id}`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className={styles.propertyCard}>
-      <Link to={`/app/properties/${id}`} className={styles.imageLink}>
+      <div
+        className={styles.imageLink}
+        onClick={() => handleRedirect(id)}
+        style={{ cursor: 'pointer' }}
+      >
         <div className={styles.cardImage}>
           <img
             src={images && images.length > 0 ? images[0] : '/placeholder-property.jpg'}
@@ -19,7 +28,7 @@ const PropertyCard = ({ property }) => {
             <h3 className={styles.propertyName}>{name}</h3>
           </div>
         </div>
-      </Link>
+      </div>
 
       <div className={styles.cardContent}>
         <p className={styles.cardText}>City: {city}</p>
@@ -28,4 +37,5 @@ const PropertyCard = ({ property }) => {
     </div>
   );
 };
+
 export default PropertyCard;

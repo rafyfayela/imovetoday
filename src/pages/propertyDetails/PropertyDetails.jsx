@@ -7,6 +7,8 @@ import Amenities from './components/Amenities';
 import PropertyOverview from './components/PropertyOverview';
 import PropertyHeroSection from './components/PropertyHeroSection';
 import Reviews from './components/Reviews';
+import LoadingDot from '../../assets/lottie/Loading.json';
+import Lottie from 'lottie-react';
 
 const PropertyDetails = () => {
   const [property, setProperty] = useState(null);
@@ -51,7 +53,18 @@ const PropertyDetails = () => {
   } = property || {};
 
   if (loading) {
-    return <div className={styles.loading}>Loading property details...</div>;
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Lottie animationData={LoadingDot} loop autoplay style={{ height: 70, width: 70 }} />
+      </div>
+    );
   }
 
   if (!property) {

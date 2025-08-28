@@ -31,7 +31,7 @@ export default function MySession() {
     if (success) {
       setOpen(false);
 
-      window.location.href = '/login';
+      window.location.href = '/';
     } else {
       console.error('Logout failed:', error);
     }
