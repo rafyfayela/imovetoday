@@ -52,7 +52,6 @@ const SchoolDetails = () => {
     <div className={styles.schoolDetailsContainer}>
       <HeroSection name={name} location={location} images={images} />
 
-      {/* Main Content */}
       <div className={styles.contentContainer}>
         <div className={styles.mainContent}>
           <SchoolOverview

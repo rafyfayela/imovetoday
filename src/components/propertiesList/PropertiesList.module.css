@@ -31,7 +31,7 @@
 }
 
 .activeFilter {
-  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
+  background: linear-gradient(135deg, #e41b23 0%, #c5171f 100%);
   color: white;
 }
 

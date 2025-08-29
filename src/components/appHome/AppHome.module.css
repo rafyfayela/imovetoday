@@ -78,11 +78,6 @@
   background-color: #e04848;
 }
 
-.floatingButton.open {
-  width: 200px;
-  background-color: #007bff;
-}
-
 /* Optional: map panel placeholder */
 .mapPanel {
   position: fixed;

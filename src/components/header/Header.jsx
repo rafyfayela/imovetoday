@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import styles from './Header.module.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Logo } from '../logo/Logo';
@@ -6,26 +6,34 @@ import { supabase } from '../../services/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import MySession from './MySession';
 import { useAuthContext } from '../../../Provider/AuthProvider';
+import SearchBar from '../SearchBar';
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuthContext();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+
+      // Update scroll state
+      setIsScrolled(currentScrollY > 10);
+
+      // Auto collapse search bar when scrolling down
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setIsSearchExpanded(false);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate('/login');
-  };
 
   const navItems = useMemo(
     () => [
@@ -76,25 +84,23 @@ const Header = () => {
     <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`}>
       <div className={styles.topLevel}>
         <div className={styles.navContainer}>
-          {/* Left: Logo */}
           <div className={styles.left} onClick={() => navigate('/app')}>
             <Logo />
           </div>
 
-          {/* --- Center: Animated Switch --- */}
           {user && location.pathname.startsWith('/app') && (
             <div className={styles.center}>
               <AnimatePresence mode="wait">
-                {isScrolled ? (
+                {isScrolled && !isSearchExpanded ? (
                   <motion.div
-                    key="search"
+                    key="miniSearch"
                     variants={searchBarVariants}
                     initial="initial"
                     animate="animate"
                     exit="exit"
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className={styles.miniSearchBar}
-                    onClick={() => console.log('Mini search clicked!')}
+                    onClick={() => setIsSearchExpanded(true)} // expand on click
                   >
                     <span>Start your search</span>
                     <div className={styles.miniSearchButton}>
@@ -130,7 +136,6 @@ const Header = () => {
             </div>
           )}
 
-          {/* Right: Auth buttons */}
           <div className={styles.right}>
             {user ? (
               <MySession />
@@ -148,9 +153,8 @@ const Header = () => {
         </div>
       </div>
 
-      {/* --- Bottom Level (Search Bar) - Conditionally Rendered --- */}
       <AnimatePresence>
-        {!isScrolled && user && location.pathname.startsWith('/app') && (
+        {(isSearchExpanded || !isScrolled) && user && location.pathname.startsWith('/app') && (
           <motion.div
             className={styles.bottomLevel}
             initial={{ height: 0, opacity: 0 }}
@@ -158,35 +162,14 @@ const Header = () => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
-            <div className={styles.searchBar}>
-              <div className={styles.searchSegment}>
-                <span>Where</span>
-                <input type="text" placeholder="Search destinations" />
-              </div>
-              <div className={styles.searchSegment}>
-                <span>Date</span>
-                <input type="text" placeholder="Add dates" />
-              </div>
-              <div className={styles.searchSegment}>
-                <span>Who</span>
-                <input type="text" placeholder="Add guests" />
-              </div>
-              <button className={styles.searchButton}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  width="1.2em"
-                  height="1.2em"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
+            <SearchBar
+              values={{ location: '', date: '', guests: '' }}
+              onChange={(key, value) => console.log(key, value)}
+              onSearch={(values) => {
+                console.log('Search clicked:', values);
+                setIsSearchExpanded(false); // collapse after search
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
